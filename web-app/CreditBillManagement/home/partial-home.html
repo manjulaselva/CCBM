@@ -1,0 +1,102 @@
+<!--
+    *****************************************************************************
+    Copyright 2019 Harman Connected Services
+    ******************************************************************************
+-->
+<body>
+<div ng-controller="homeController">
+    <div class="container-fluid">
+        <div class="row layout">
+            <div class="col-md-12">
+                <div id="main">
+                    <menu-directive></menu-directive>
+                    <h1 id="menu" onclick="openNav()">&#9776;</h1><h1 id="heading">Recent Questions</h1>
+                    <div class="accordion" id="accordionExample" ng-repeat="q in questions | limitTo: 5">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h1 class="mb-0">
+                                    <label class="questionlist">
+                                        {{ q.question.question }}
+                                    </label>
+                                    <span class="align badge badge-pill badge-secondary">{{q.question.categoryName}}</span>
+                                </h1>
+                                <h1 class="mb-0">
+                                    <span class="align">
+                                        <label class="side">
+                                            {{ q.question.createdBy }}
+                                        </label>
+                                        <br/>
+                                        <label class="side">
+                                            {{ q.question.createdOn }}
+                                        </label>
+                                    </span>
+                                </h1>
+                                <br/>
+                                <div class ="partTwo">
+                                    <h6 class="mb-0">
+                                        <span>
+                                            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseTwo{{$index}}"aria-expanded="false" aria-controls="collapseOne"><i class="fas fa-pen"> Submit Responses</i></button>
+                                        </span>
+                                        <span>
+                                            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseOne{{$index}}" aria-expanded="false" aria-controls="collapseOne" id="q.question.questionId" ng-init="disableButton" ng-disabled="!q.question.answerPresent" ng-click="getAnswer(q.question.questionId, $index); showHide($index)" ><i class="fas fa-book-open"> Read Responses</i></button>
+                                        </span>
+                                    </h6>
+                                    <div class="dropdown-divider"></div>
+                                    <div id="collapseTwo{{$index}}" class="collapse in">
+                                        <textarea name="answer" ng-model="answer"  class="form-control "  placeholder="Type your Answer here..." rows="10" cols="20"></textarea>
+                                        <br>
+                                        <button class="btn btn-primary align" ng-disabled="!answer.length" ng-click="postAnswer(answer,q.question.questionId, $index);answer.$rollbackViewValue(); answer=''">Submit</button>
+                                    </div>
+                                    <div ng-if = "q.canShowAns" ng-repeat="ans in q.answers">
+                                        <div class="card-body">
+                                            <h1 class="mb-0">
+                                                <div class="chip">
+                                                    <img src="images/Avatar.jpg">
+                                                    <label class="chip">
+                                                        {{ans.CreatedBy}}
+                                                    </label>
+                                                </div>
+                                                <span class="align">
+                                                    <label class="side">
+                                                        {{ans.CreatedOn}}
+                                                    </label>
+                                                </span>
+                                            </h1>
+                                            <div class="padded">
+                                                {{ans.Answer}}
+                                                <div class="dropdown-divider"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <button class="align"  ng-class="{'btn btn-primary':!isDisabled, 'btn btn-secondary':isDisabled}" ng-click="showMore($index);disable();" ng-show="IsVisible{{$index}}" ng-disabled="isAvailable{{$index}}" ng-model="isDisabled">Load More Answers</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

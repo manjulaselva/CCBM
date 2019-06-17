@@ -1,0 +1,146 @@
+<!--
+    *****************************************************************************
+    Copyright 2019 Harman Connected Services
+    ******************************************************************************
+-->
+
+<head>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a>
+    <a href="#/askQuestion"><img src="https://img.icons8.com/office/26/000000/questions.png"> Ask Question</a>
+    <a href="#/questionBank"><img src="https://img.icons8.com/office/26/000000/spiral-bound-booklet.png">  Question Bank</a>
+    <a href="#/userQuestion"><img src="https://img.icons8.com/office/26/000000/faq.png"> My Questions</a>
+    <a href="#" data-toggle="modal" data-target="#myModal"><img src="https://img.icons8.com/office/26/000000/contacts.png"> User Profile</a>
+    <a href="#/feedback"><img src="https://img.icons8.com/office/26/000000/talk-female.png"> Feedback</a>
+</div>
+
+
+<div ng-controller="userProfileController">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">About Me</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="chip1">
+                        <img src="images/userProfile.jpg">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>
+                                    <strong>{{userprofile.firstName + " " + userprofile.lastName}}</strong><br/>
+                                </label>
+                            </div>
+                            <div class="col-sm-12">
+                                <label style="padding-bottom: 60px">
+                                    {{userprofile.emailId}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="dropdown-divider"></div>
+                    <p>User Name: <strong>{{userprofile.userName}}</strong></p>
+
+                    <p>GOC: <strong>{{userprofile.departmentName}}</strong></p>
+
+                    <p>Employee Id: <strong>{{userprofile.employeeId}}</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    }
+</script>
+
+</body>
+
+
+
+<!--<div class="accordion" id="accordionExample" ng-repeat="q in questions | limitTo: 5">
+                        <div class="card">
+                            <div class="card-header" id="headingOne" >
+                                <h1 class="mb-0">
+                                    <label class="questionlist">
+                                        {{ q.question.question }}
+                                    </label>
+                                    <span class="align badge badge-pill badge-secondary">{{q.question.categoryName}}</span>
+                                </h1>
+                                <h1 class="mb-0">
+                                <span class="align">
+                                    <label class="side">
+                                        {{ q.question.createdBy }}
+                                    </label>
+                                    <br/>
+                                    <label class="side">
+                                        {{ q.question.createdOn }}
+                                    </label>
+                                </span>
+                                </h1>
+                                <br/>
+
+                                <div class="partTwo">
+                                    <h6 class="mb-0">
+                                    <span>
+                                        <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseTwo{{$index}}"aria-expanded="false" aria-controls="collapseOne"><i class="fas fa-pen"> Write Answer</i></button>
+                                    </span>
+                                        <span>
+                                        <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseOne{{$index}}" aria-expanded="false" aria-controls="collapseOne" id="q.question.questionId"  ng-click="getAnswer(q.question.questionId, $index); showHide($index)" ><i class="fas fa-book-open"> Read Answers</i></button>
+                                    </span>
+                                    </h6>
+                                    <div class="dropdown-divider"></div>
+                                    <div id="collapseTwo{{$index}}" class="collapse in">
+                                        <textarea name="answer" ng-model="answer"  class="form-control "  placeholder="Type your Answer here..." rows="10" cols="20"></textarea>
+                                        <br>
+                                        <button class="btn btn-primary align" ng-disabled="!answer.length" ng-click="postAnswer(answer,q.question.questionId, $index);answer.$rollbackViewValue(); answer=''">Submit</button>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div ng-if = "q.canShowAns" ng-repeat="ans in q.answers">
+                                        <div class="card-body">
+                                            <h1 class="mb-0">
+                                                <div class="chip">
+                                                    <img src="images/Avatar.jpg">
+                                                    <label class="chip">
+                                                        {{ans.CreatedBy}}
+                                                    </label>
+                                                </div>
+                                                <span class="align">
+                                                <label class="side">
+                                                    {{ans.CreatedOn}}
+                                                </label>
+                                            </span>
+                                            </h1>
+                                            <div class="padded">
+                                                {{ans.Answer}}
+                                                <div class="dropdown-divider"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <button class="btn btn-primary align" ng-click="showMore($index);disable()" ng-show="IsVisible{{$index}}" ng-disabled="isDisabled" ng-model="isDisabled">Load More Answers</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->

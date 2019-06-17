@@ -1,0 +1,33 @@
+<!--
+    *****************************************************************************
+    Copyright 2019 Harman Connected Services
+    ******************************************************************************
+-->
+<body>
+<div ng-controller="askQuestionController">
+    <div class="container-fluid">
+        <div class="row layout">
+            <div class="col-md-12">
+                <div id="main">
+                    <menu-directive></menu-directive>
+                    <h1 id="menu" onclick="openNav()">&#9776;</h1><h1 id="heading" class="divTableCell required-field">Ask Question:</h1>
+                    <form name="askQuestionForm" action="/Sanchaar">
+                        <div class="form-group">
+                            <textarea name="question" ng-model="question"  class="form-control "  placeholder="Type your Question..." rows="10" cols="10"></textarea>
+                        </div>
+                        <h1 class="divTableCell required-field"><b>Select Category:</b></h1>
+                        <div class="form-group">
+                            <select name="selectId" style="width:15%" class="form-control categoryDrop"  ng-model="selectedValue" required>
+                                <option class="dropdown-item" ng-repeat="c in category" value="{{c.categoryName}}">{{c.categoryName}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" ng-disabled="!question.length||askQuestionForm.selectId.$error.required" ng-click="askQuestion()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
